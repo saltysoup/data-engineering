@@ -222,6 +222,8 @@ Whitelist your IP address to provide network access in your Redshift cluster's s
 
 Connect to your Redshift cluster using your SQL client tool and run a simple query to test the connection.
 
+**As of 4th Oct 2018, you can use the Redshift Console based [Query Editor](https://aws.amazon.com/about-aws/whats-new/2018/10/amazon_redshift_announces_query_editor_to_run_queries_directly_from_the_aws_console/) to run queries directly without needing to connect via SQL clients!**
+
 <details>
 <summary><strong>Step-by-step instructions (expand for details)</strong></summary><p>
 
@@ -308,7 +310,7 @@ Before you proceed, ensure that your SQL Workbench/J client is connected to the 
 
     ``` sql
     create table aisles(
-    aisleid integer not null distkey sortkey,
+    aisle_id integer not null distkey sortkey,
     aisle varchar(30)
     );
 
@@ -334,14 +336,14 @@ Before you proceed, ensure that your SQL Workbench/J client is connected to the 
         department_id integer not null
     );
 
-    create table order_products__prior(
+    create table order_products_prior(
         order_id integer not null distkey sortkey,
         product_id integer not null,
         add_to_cart_order integer,
         reordered smallint
     );
 
-    create table order_products__train(
+    create table order_products_train(
         order_id integer not null distkey sortkey,
         product_id integer not null,
         add_to_cart_order integer,
@@ -366,7 +368,7 @@ Before you proceed, ensure that your SQL Workbench/J client is connected to the 
 
     ``` sql
     COPY aisles
-    FROM 's3://pfizer-immersion-day/aisles.csv' 
+    FROM 's3://pfizer-immersion-day/csv/aisle' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
@@ -377,45 +379,48 @@ Before you proceed, ensure that your SQL Workbench/J client is connected to the 
 
 
     To load the sample data, replace *<iam\-role\-arn>* in the following COPY commands with your role ARN\. Then run the commands in your SQL client tool\.
+    
+    `If you have completed Module 1, substitute your S3 file locations instead.`
+    
 
     ``` sql
     COPY aisles
-    FROM 's3://pfizer-immersion-day/csv/aisles.csv' 
+    FROM 's3://pfizer-immersion-day/csv/aisle' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1;
 
     COPY departments
-    FROM 's3://pfizer-immersion-day/csv/departments.csv' 
+    FROM 's3://pfizer-immersion-day/csv/departments' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1
 
     COPY orders
-    FROM 's3://pfizer-immersion-day/csv/orders.csv' 
+    FROM 's3://pfizer-immersion-day/csv/orders' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1
 
     COPY products
-    FROM 's3://pfizer-immersion-day/csv/products.csv' 
+    FROM 's3://pfizer-immersion-day/csv/products' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1
 
-    COPY order_products__prior
-    FROM 's3://pfizer-immersion-day/csv/order_products__prior.csv' 
+    COPY order_products_prior
+    FROM 's3://pfizer-immersion-day/csv/order_products_prior' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1
 
-    COPY order_products__train
-    FROM 's3://pfizer-immersion-day/csv/order_products__train.csv' 
+    COPY order_products_train
+    FROM 's3://pfizer-immersion-day/csv/order_products_train' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
@@ -435,6 +440,13 @@ Before you proceed, ensure that your SQL Workbench/J client is connected to the 
     FROM   departments LEFT OUTER JOIN products on departments.department_id = products.department_id 
     GROUP BY departments.department
     
+    -- Find the top 20 best selling items
+    SELECT product_name, COUNT(order_products_prior.product_id) AS Number_Of_Orders
+    FROM products LEFT OUTER JOIN order_products_prior on products.product_id = order_products_prior.product_id
+    GROUP BY product_name
+    ORDER BY Number_Of_Orders DESC
+	LIMIT 20
+
     ```
 
 1. You can optionally go the Amazon Redshift console to review the queries you executed\. The **Queries** tab shows a list of queries that you executed over a time period you specify\. By default, the console displays queries that have executed in the last 24 hours, including currently executing queries\. 

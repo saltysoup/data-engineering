@@ -1,5 +1,5 @@
 create table aisles(
-    aisleid integer not null distkey sortkey,
+    aisle_id integer not null distkey sortkey,
     aisle varchar(30)
 );
 
@@ -25,14 +25,14 @@ create table products(
     department_id integer not null
 );
 
-create table order_products__prior(
+create table order_products_prior(
     order_id integer not null distkey sortkey,
     product_id integer not null,
     add_to_cart_order integer,
     reordered smallint
 );
 
-create table order_products__train(
+create table order_products_train(
     order_id integer not null distkey sortkey,
     product_id integer not null,
     add_to_cart_order integer,
