@@ -83,9 +83,9 @@ Click **Next**
 | Property         | Value                      |
 | ---------------- |:--------------------------:|
 | Instance         | Datalab                    |
-| Database Name    | `select the only option`   |
+| Database Name    | <select the only option>   |
 | Username         | dataadmin                  |
-| Password         | `askme`                    |
+| Password         | <askme>                    |
 
 3. On the review page, take note of the Security Group ID. Click **Next** then **Finish**.
 
