@@ -88,22 +88,6 @@ Click **Next**
 | Password         | `ask me`                   |
 
 3. On the review page, take note of the Security Group ID. Click **Next** then **Finish**.
-
-4. To allow glue to access our database, we need to add the security group ID to the database firewall. In the AWS Management Console, choose **Services** then **RDS**
-
-5. Under **Instances**, select the `datalab` instance and find the **Inbound Security Group** rule under **Security group**. Select the security group.
-
-6. Choose thew **Inbound** tab, then select **Edit**. 
-
-7. Add the following rule:
-
-| Type        | Protocol | Port Range | Source                     | Description | 
-| ----------- |:--------:|:----------:|:--------------------------:|:-----------:|
-| All Traffic | All      | 0 - 65535  | Custom `Security Group ID` |             | 
-
-Click **Save**.
-
-8. Now that the database firewall has been ammended to allow traffic from Glue, we can test the connection. Head back to the **Glue** service in the console and select **Connections**. Select the connection and choose **Test Connection**. This should come back successful.
 </details>
 
 ### 3. Create a Data Catalog
