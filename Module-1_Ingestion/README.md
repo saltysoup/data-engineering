@@ -80,12 +80,12 @@ Use the console or AWS CLI to create a JDBC connection in AWS Glue for the AWS R
 
 Click **Next**
 
-| Property         | Value       |
-| ---------------- |:-----------:|
-| Instance         | Datalab     |
-| Database Name    | Instacart   |
-| Username         | dataadmin   |
-| Password         | `askme`     |
+| Property         | Value                      |
+| ---------------- |:--------------------------:|
+| Instance         | Datalab                    |
+| Database Name    | `select the only option`   |
+| Username         | dataadmin                  |
+| Password         | `askme`                    |
 
 3. On the review page, take note of the Security Group ID. Click **Next** then **Finish**.
 
