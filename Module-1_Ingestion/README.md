@@ -82,8 +82,8 @@ Click **Next**
 
 | Property         | Value                      |
 | ---------------- |:--------------------------:|
-| Instance         | Datalab                    |
-| Database Name    | `select the only option`   |
+| Instance         | `select the only option`   |
+| Database Name    | instacart                  |
 | Username         | dataadmin                  |
 | Password         | `askme`                    |
 
