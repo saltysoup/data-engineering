@@ -67,7 +67,7 @@ Use the console or AWS CLI to create a JDBC connection in AWS Glue for the AWS R
 <details>
 <summary><strong>Step-by-step instructions (expand for details)</strong></summary><p>
 
-1. In the AWS Management Console choose **Services** then select **Glue**.
+1. In the AWS Management Console choose **Services** then select **Glue**. Ensure that the region is set to **ap-southeast-2**.
 
 2. To add a connection in the AWS Glue console, choose **Add Connection**. The wizard guides you through adding the properties that are required to create a JDBC connection to a data store. Use the following properties:
 
