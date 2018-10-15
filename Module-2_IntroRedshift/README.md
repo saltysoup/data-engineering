@@ -1,4 +1,4 @@
-# Module 3 - Redshift
+# Module 2 - Redshift
 
 ## Background
 In this module, you will learn how to create a Redshift cluster, connect to it using a SQL client and load sample data to run some queries.

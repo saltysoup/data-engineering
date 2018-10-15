@@ -162,6 +162,7 @@ To run queries on Redshift you will need a SQL tool such as SQL Workbench/J. You
 ### Redshift Query Editor NEW!
 If your Redshift cluster is compatible with the new Query Editor feature, you can use connect to your Redshift and use SQL queries on the AWS console.
 
+
 1. Before we can query data in S3 using Spectrum we need to create an external schema configured to interface with the Glue Data Catalog. Open up SQL Workbench/J or a similar tool and run the following commands in sequence:
 
     ``` sql
