@@ -67,7 +67,7 @@ Use the console or AWS CLI to create a JDBC connection in AWS Glue for the AWS R
 <details>
 <summary><strong>Step-by-step instructions (expand for details)</strong></summary><p>
 
-1. In the AWS Management Console choose **Services** then select **Glue**.
+1. In the AWS Management Console choose **Services** then select **Glue**. Ensure that the region is set to **ap-southeast-2**.
 
 2. To add a connection in the AWS Glue console, choose **Add Connection**. The wizard guides you through adding the properties that are required to create a JDBC connection to a data store. Use the following properties:
 
@@ -80,30 +80,14 @@ Use the console or AWS CLI to create a JDBC connection in AWS Glue for the AWS R
 
 Click **Next**
 
-| Property         | Value       |
-| ---------------- |:-----------:|
-| Instance         | Datalab     |
-| Database Name    | Instacart   |
-| Username         | dataadmin   |
-| Password         | `askme`     |
+| Property         | Value                      |
+| ---------------- |:--------------------------:|
+| Instance         | `select the only option`   |
+| Database Name    | instacart                  |
+| Username         | dataadmin                  |
+| Password         | `ask me`                   |
 
 3. On the review page, take note of the Security Group ID. Click **Next** then **Finish**.
-
-4. To allow glue to access our database, we need to add the security group ID to the database firewall. In the AWS Management Console, choose **Services** then **RDS**
-
-5. Under **Instances**, select the `datalab` instance and find the **Inbound Security Group** rule under **Security group**. Select the security group.
-
-6. Choose thew **Inbound** tab, then select **Edit**. 
-
-7. Add the following rule:
-
-| Type        | Protocol | Port Range | Source                     | Description | 
-| ----------- |:--------:|:----------:|:--------------------------:|:-----------:|
-| All Traffic | All      | 0 - 65535  | Custom `Security Group ID` |             | 
-
-Click **Save**.
-
-8. Now that the database firewall has been ammended to allow traffic from Glue, we can test the connection. Head back to the **Glue** service in the console and select **Connections**. Select the connection and choose **Test Connection**. This should come back successful.
 </details>
 
 ### 3. Create a Data Catalog
