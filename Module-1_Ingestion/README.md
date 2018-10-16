@@ -88,6 +88,8 @@ Click **Next**
 | Password         | `ask me`                   |
 
 3. On the review page, take note of the Security Group ID. Click **Next** then **Finish**.
+
+4. Select the newly created connection and choose **Test Connection**. This should come back successful.
 </details>
 
 ### 3. Create a Data Catalog
