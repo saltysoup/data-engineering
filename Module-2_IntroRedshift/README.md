@@ -288,7 +288,7 @@ At this point you have a database called `dev` and you are connected to it\. Now
 
 ### High-Level Instructions
 
-Download all of the sample delimited data (6 x CSV files) from s3://pfizer-immersion-day/csv/ and examine the data structure. Create a total of 6 new tables for the different data types and run some sample queries. 
+Download all of the sample delimited data (6 x CSV files) from **s3://datalab-raw-\[account_id\]** and examine the data structure. Create a total of 6 new tables for the different data types and run some sample queries. 
 
 
 <details>
@@ -368,7 +368,7 @@ Before you proceed, ensure that your SQL Workbench/J client is connected to the 
 
     ``` sql
     COPY aisles
-    FROM 's3://pfizer-immersion-day/csv/aisle' 
+    FROM 's3://datalab-raw-[account_id]/aisles' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
@@ -385,42 +385,42 @@ Before you proceed, ensure that your SQL Workbench/J client is connected to the 
 
     ``` sql
     COPY aisles
-    FROM 's3://pfizer-immersion-day/csv/aisle' 
+    FROM 's3://datalab-raw-[account_id]/aisles' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1;
 
     COPY departments
-    FROM 's3://pfizer-immersion-day/csv/departments' 
+    FROM 's3://datalab-raw-[account_id]/departments' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1
 
     COPY orders
-    FROM 's3://pfizer-immersion-day/csv/orders' 
+    FROM 's3://datalab-raw-[account_id]/orders' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1
 
     COPY products
-    FROM 's3://pfizer-immersion-day/csv/products' 
+    FROM 's3://datalab-raw-[account_id]/products' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1
 
     COPY order_products_prior
-    FROM 's3://pfizer-immersion-day/csv/order_products_prior' 
+    FROM 's3://datalab-raw-[account_id]/order_products_prior' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1
 
     COPY order_products_train
-    FROM 's3://pfizer-immersion-day/csv/order_products_train' 
+    FROM 's3://datalab-raw-[account_id]/order_products_train' 
     CREDENTIALS 'aws_iam_role=<iam-role-arn>'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV

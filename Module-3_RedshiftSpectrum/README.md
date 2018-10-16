@@ -83,7 +83,7 @@ We will use a public data set provided by [Instacart in May 2017](https://tech.i
 `Ensure that the Glue Crawler is in the same region as your S3 bucket and Redshift cluster`
 
 ### High-Level Instructions
-Create a new Glue crawler that will catalog the **S3 bucket from Module 1** that contains your parquet format files. If you don't have these files, you can use the files within **s3://pfizer-immersion-day/parquet/**.
+Create a new Glue crawler that will catalog S3 bucket **s3://datalab-analytics-\[account_id\]** that contains your parquet format files. If you don't have these files, you can use the files within **s3://pfizer-immersion-day/parquet/**.
 
 Verify that the newly created Glue Data Catalog has detected the correct classification and schema for the files.
 
