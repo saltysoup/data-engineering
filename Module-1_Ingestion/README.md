@@ -96,7 +96,7 @@ Click **Next**
 Now that the JDBC connection has been created, we can create a data catalogue for the data in our SQL database by using an AWS Glue Crawler. The AWS Glue Data Catalog that will be built, will contains references to data that is used when determining the source and target of your extract, transform, and load (ETL) jobs in AWS Glue.
 
 #### High-Level Instructions
-Use the console or AWS CLI to create a cralwer in AWS Glue for the AWS RDS SQL Server that resides in the region being used for the lab. Once the crawler has been created, run it and check that the tables have been created in the catalog successfully.
+Use the console or AWS CLI to create a crawler in AWS Glue for the AWS RDS SQL Server that resides in the region being used for the lab. Once the crawler has been created, run it and check that the tables have been created in the catalog successfully.
 
 <details>
 <summary><strong>Step-by-step instructions (expand for details)</strong></summary><p>
@@ -113,7 +113,7 @@ Use the console or AWS CLI to create a cralwer in AWS Glue for the AWS RDS SQL S
 
 6. Under **Frequency**, select **Run On Demand** then select **Next**.
 
-7. Select **Add Database** and choose the name `instacart-rds` then select **Next**, then **Finsh**.
+7. Select **Add Database** and choose the name `instacart-rds` then select **Next**, then **Finish**.
 
 8. Select the `instacart-rds` crawler and click **Run crawler**.
 
