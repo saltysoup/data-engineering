@@ -249,7 +249,7 @@ Create an S3 folder per table in the analytics S3 bucket, and create a Glue ETL 
 
 4. For the Job name, specify `csv2parq` and choose `AWSGlueServiceRole-DataLab`. Select **A new script to be authored by you**, then select **Python** as the **ETL Language**. Leave everything else as default, then select **Next**.
 
-5. Select **Next** under *Connections** then select **Save job and edit script**. Copy and paste the following, while changing the s3bucket variable.
+5. Select **Next** on the **Connections** page then select **Save job and edit script**. Copy and paste the following, while changing the s3bucket variable.
  
  ```Python
 import sys
