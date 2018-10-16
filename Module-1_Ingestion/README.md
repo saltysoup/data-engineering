@@ -109,7 +109,7 @@ Use the console or AWS CLI to create a cralwer in AWS Glue for the AWS RDS SQL S
 
 4. Select **No**, then click **Next**.
 
-5. Under the **IAM Role**, select `AWSGlueServiceRole-DataLab`, then select **Next**.
+5. Under the **IAM Role**, select **Choose an existing IAM role** select `AWSGlueServiceRole-DataLab`, then select **Next**.
 
 6. Under **Frequency**, select **Run On Demand** then select **Next**.
 
@@ -225,7 +225,7 @@ Create an S3 folder per table in the analytics S3 bucket, and create a Glue ETL 
 
 4. Select **No**, then click **Next**.
 
-5. Under the **IAM Role**, select `AWSGlueServiceRole-DataLab`, then select **Next**.
+5. Under the **IAM Role**, select **Choose an existing IAM role** select `AWSGlueServiceRole-DataLab`, then select **Next**.
 
 6. Under **Frequency**, select **Run On Demand** then select **Next**.
 
