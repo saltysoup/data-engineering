@@ -88,6 +88,8 @@ Click **Next**
 | Password         | `ask me`                   |
 
 3. On the review page, take note of the Security Group ID. Click **Next** then **Finish**.
+
+4. Select the newly created connection and choose **Test Connection**. This should come back successful.
 </details>
 
 ### 3. Create a Data Catalog
@@ -107,7 +109,7 @@ Use the console or AWS CLI to create a cralwer in AWS Glue for the AWS RDS SQL S
 
 4. Select **No**, then click **Next**.
 
-5. Under the **IAM Role**, select `AWSGlueServiceRole-DataLab`, then select **Next**.
+5. Under the **IAM Role**, select **Choose an existing IAM role** select `AWSGlueServiceRole-DataLab`, then select **Next**.
 
 6. Under **Frequency**, select **Run On Demand** then select **Next**.
 
@@ -200,7 +202,9 @@ job.commit()
 
 7. Select the ETL job created and selection **Action** -> **Run Job**. 
 
-8. Once complete, go to the **S3** service, select the raw bucket, and analyze the contents of each folder. You should see files that have been created.
+8. Select the ETL job and view the job history
+
+9. Once the job completes, go to the **S3** service, select the raw bucket, and analyze the contents of each folder. You should see files that have been created.
 
 </details>
 
@@ -221,7 +225,7 @@ Create an S3 folder per table in the analytics S3 bucket, and create a Glue ETL 
 
 4. Select **No**, then click **Next**.
 
-5. Under the **IAM Role**, select `AWSGlueServiceRole-DataLab`, then select **Next**.
+5. Under the **IAM Role**, select **Choose an existing IAM role** select `AWSGlueServiceRole-DataLab`, then select **Next**.
 
 6. Under **Frequency**, select **Run On Demand** then select **Next**.
 
@@ -245,7 +249,7 @@ Create an S3 folder per table in the analytics S3 bucket, and create a Glue ETL 
 
 4. For the Job name, specify `csv2parq` and choose `AWSGlueServiceRole-DataLab`. Select **A new script to be authored by you**, then select **Python** as the **ETL Language**. Leave everything else as default, then select **Next**.
 
-5. Select **Next** under *Connections** then select **Save job and edit script**. Copy and paste the following, while changing the s3bucket variable.
+5. Select **Next** on the **Connections** page then select **Save job and edit script**. Copy and paste the following, while changing the s3bucket variable.
  
  ```Python
 import sys
@@ -298,6 +302,8 @@ job.commit()
 
 7. Select the ETL job created and selection **Action** -> **Run Job**. 
 
-8. Once complete, go to the **S3** service, select the analysis bucket, and analyze the contents of each folder. You should see files that have been created.
+8. Select the ETL job and view the job history
+
+9. Once the job completes, go to the **S3** service, select the analysis bucket, and analyze the contents of each folder. You should see files that have been created.
 
 </details>
