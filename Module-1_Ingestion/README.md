@@ -302,6 +302,8 @@ job.commit()
 
 7. Select the ETL job created and selection **Action** -> **Run Job**. 
 
-8. Once complete, go to the **S3** service, select the analysis bucket, and analyze the contents of each folder. You should see files that have been created.
+8. Select the ETL job and view the job history
+
+9. Once the job completes, go to the **S3** service, select the analysis bucket, and analyze the contents of each folder. You should see files that have been created.
 
 </details>
