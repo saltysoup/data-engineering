@@ -288,7 +288,7 @@ At this point you have a database called `dev` and you are connected to it\. Now
 
 ### High-Level Instructions
 
-Download all of the sample delimited data (6 x CSV files) from **s3://datalab-raw-\[account_id\]** and examine the data structure. Create a total of 6 new tables for the different data types and run some sample queries. 
+Download a sample of the delimited data (6 x CSV files) from **s3://datalab-raw-\[account_id\]** and examine the data structure. Create a total of 6 new tables for the different data types and run some sample queries. 
 
 
 <details>
