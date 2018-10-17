@@ -269,7 +269,7 @@ job = Job(glueContext)
 
 job.init(args['JOB_NAME'], args)
 
-s3bucket = "datalab-analytics-003556365482"
+s3bucket = "datalab-analytics-12334561234"
 
 datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-csv", table_name = "aisles", transformation_ctx = "datasource0")
 applymapping1 = ApplyMapping.apply(frame = datasource0, mappings = [("aisle_id", "long", "aisle_id", "long"), ("aisle", "string", "aisle", "string")], transformation_ctx = "applymapping1")
