@@ -84,7 +84,7 @@ Click **Next**
 | ---------------- |:--------------------------:|
 | Instance         | `select the only option`   |
 | Database Name    | instacart                  |
-| Username         | dataadmin                  |
+| Username         | bcouhbor                   |
 | Password         | `ask me`                   |
 
 3. On the review page, take note of the Security Group ID. Click **Next** then **Finish**.
