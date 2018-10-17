@@ -269,31 +269,31 @@ job = Job(glueContext)
 
 job.init(args['JOB_NAME'], args)
 
-s3bucket = "datalab-analytics-12345678912"
+s3bucket = "datalab-analytics-003556365482"
 
-datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-s3", table_name = "aisles", transformation_ctx = "datasource0")
+datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-csv", table_name = "aisles", transformation_ctx = "datasource0")
 applymapping1 = ApplyMapping.apply(frame = datasource0, mappings = [("aisle_id", "long", "aisle_id", "long"), ("aisle", "string", "aisle", "string")], transformation_ctx = "applymapping1")
-datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://" + s3buckets + "/" + "aisles" }, format = "parquet", transformation_ctx = "datasink2")
+datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://" + s3bucket + "/" + "aisles" }, format = "parquet", transformation_ctx = "datasink2")
 
-datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-s3", table_name = "departments", transformation_ctx = "datasource0")
+datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-csv", table_name = "departments", transformation_ctx = "datasource0")
 applymapping1 = ApplyMapping.apply(frame = datasource0, mappings = [("department_id", "long", "department_id", "long"), ("department", "string", "department", "string")], transformation_ctx = "applymapping1")
-datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://" + s3buckets + "/" + "departments"}, format = "parquet", transformation_ctx = "datasink2")
+datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://" + s3bucket + "/" + "departments"}, format = "parquet", transformation_ctx = "datasink2")
 
-datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-s3", table_name = "order_products_prior", transformation_ctx = "datasource0")
+datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-csv", table_name = "order_products_prior", transformation_ctx = "datasource0")
 applymapping1 = ApplyMapping.apply(frame = datasource0, mappings = [("order_id", "long", "order_id", "long"), ("product_id", "long", "product_id", "long"), ("add_to_cart_order", "long", "add_to_cart_order", "long"), ("reordered", "long", "reordered", "long")], transformation_ctx = "applymapping1")
-datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://datalab-analytics-467751274256/" + "order_products_prior"}, format = "parquet", transformation_ctx = "datasink2")
+datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://" + s3bucket + "/" + "order_products_prior"}, format = "parquet", transformation_ctx = "datasink2")
 
-datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-s3", table_name = "order_products_train", transformation_ctx = "datasource0")
+datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-csv", table_name = "order_products_train", transformation_ctx = "datasource0")
 applymapping1 = ApplyMapping.apply(frame = datasource0, mappings = [("order_id", "long", "order_id", "long"), ("product_id", "long", "product_id", "long"), ("add_to_cart_order", "long", "add_to_cart_order", "long"), ("reordered", "long", "reordered", "long")], transformation_ctx = "applymapping1")
-datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://datalab-analytics-467751274256/" + "order_products_train"}, format = "parquet", transformation_ctx = "datasink2")
+datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://" + s3bucket + "/" + "order_products_train"}, format = "parquet", transformation_ctx = "datasink2")
 
-datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-s3", table_name = "orders", transformation_ctx = "datasource0")
+datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-csv", table_name = "orders", transformation_ctx = "datasource0")
 applymapping1 = ApplyMapping.apply(frame = datasource0, mappings = [("order_id", "long", "order_id", "long"), ("user_id", "long", "user_id", "long"), ("eval_set", "string", "eval_set", "string"), ("order_number", "long", "order_number", "long"), ("order_dow", "long", "order_dow", "long"), ("order_hour_of_day", "long", "order_hour_of_day", "long"), ("days_since_prior_order", "double", "days_since_prior_order", "double")], transformation_ctx = "applymapping1")
-datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://datalab-analytics-467751274256/" + "orders"}, format = "parquet", transformation_ctx = "datasink2")
+datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://" + s3bucket + "/" + "orders"}, format = "parquet", transformation_ctx = "datasink2")
 
-datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-s3", table_name = "products", transformation_ctx = "datasource0")
+datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-csv", table_name = "products", transformation_ctx = "datasource0")
 applymapping1 = ApplyMapping.apply(frame = datasource0, mappings = [("product_id", "long", "product_id", "long"), ("product_name", "string", "product_name", "string"), ("aisle_id", "long", "aisle_id", "long"), ("department_id", "long", "department_id", "long")], transformation_ctx = "applymapping1")
-datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://datalab-analytics-467751274256/" + "products"}, format = "parquet", transformation_ctx = "datasink2")
+datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://" + s3bucket + "/" + "products"}, format = "parquet", transformation_ctx = "datasink2")
 
 job.commit()
 ```
