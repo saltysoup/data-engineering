@@ -1,0 +1,169 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: CloudFormation template for data immersion day.
+Parameters: 
+  GlueRoleName:
+    Type: String
+    Default: GlueServiceRole-DataLab 
+  VPCCIDR: 
+    Type: String
+    Default: 10.0.0.0/16
+    Description: CIDR Range for VPC
+  SubnetACIDR: 
+    Type: String
+    Default: 10.0.0.0/24
+    Description: CIDR Range for SubnetA
+  SubnetBCIDR: 
+    Type: String
+    Default: 10.0.1.0/24
+    Description: CIDR Range for SubnetC
+  RDSInstanceSize: 
+    Type: String
+    Default: db.m4.large
+    Description: RDS Instance Size
+  SnapshotARN: 
+    Type: String
+    Description: Snapshot to recover
+  RDSUsername: 
+    Type: String
+    Default: bcouhbor
+    Description: Username for RDS instance
+  RDSPassword: 
+    Type: String
+    NoEcho: True
+    Description: Password for RDS instance
+
+Resources:
+
+  GlueSR:
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: "Allow"
+            Principal: 
+              Service: 
+                - "glue.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      Path: "/"
+      ManagedPolicyArns: 
+        - arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+      RoleName: 
+        Ref: GlueRoleName
+
+  RootInstanceProfile: 
+    Type: "AWS::IAM::InstanceProfile"
+    Properties: 
+      Path: "/"
+      Roles:
+        - 
+          Ref: "GlueSR"
+
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      CidrBlock: 
+        Ref: VPCCIDR
+  
+  SubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 
+        Ref: SubnetACIDR
+      AvailabilityZone: 
+        Fn::Select: 
+          - 0
+          - Fn::GetAZs: ""
+  
+  SubnetB:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 
+        Ref: SubnetBCIDR
+      AvailabilityZone: 
+        Fn::Select: 
+          - 1
+          - Fn::GetAZs: ""
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties: 
+      VpcId: !Ref VPC
+
+  Route:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+
+  SubnetRouteTableAssociationA:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SubnetA
+      RouteTableId: !Ref RouteTable
+
+  SubnetRouteTableAssociationB:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SubnetB
+      RouteTableId: !Ref RouteTable
+
+  NetworkAcl:
+    Type : AWS::EC2::NetworkAcl
+    Properties:
+      VpcId: !Ref VPC
+
+  Endpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties: 
+      VpcId: !Ref VPC
+      ServiceName: !Join 
+        - ''
+        - - com.amazonaws.
+          - !Ref 'AWS::Region'
+          - .s3
+      RouteTableIds: 
+      - !Ref RouteTable
+      VpcEndpointType: Gateway
+
+  SubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties: 
+      DBSubnetGroupDescription: MSSQL Subnet Group
+      SubnetIds:
+        - !Ref SubnetA
+        - !Ref SubnetB
+      
+  SQLDatabase:
+    Type: "AWS::RDS::DBInstance"
+    Properties:
+      AutoMinorVersionUpgrade: false
+      MasterUsername: 
+        Ref: RDSUsername
+      MasterUserPassword: 
+        Ref: RDSPassword
+      BackupRetentionPeriod: 1
+      CharacterSetName: String
+      DBInstanceClass: 
+        Ref: RDSInstanceSize
+      DBSnapshotIdentifier: 
+        Ref: SnapshotARN
+      DBSubnetGroupName: !Ref SubnetGroup
+      PubliclyAccessible: true
