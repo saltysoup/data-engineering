@@ -9,7 +9,7 @@ The dataset for the immersion day is a relational set of files describing [insta
 In our lab environment, the dataset is stored in a Microsoft SQL database.
 
 ## Lab Architecture 
-
+![Module_1_Architecture](Module_1_Architecture.png)
 
 ## Pre-requisites
 Each AWS account already has the following deployed:
@@ -85,7 +85,7 @@ Click **Next**
 | Instance         | `select the only option`   |
 | Database Name    | instacart                  |
 | Username         | bcouhbor                   |
-| Password         | `ask me`                   |
+| Password         | `Blah1234!`                   |
 
 3. On the review page, take note of the Security Group ID. Click **Next** then **Finish**.
 

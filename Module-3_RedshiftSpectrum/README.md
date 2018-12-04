@@ -83,7 +83,7 @@ We will use a public data set provided by [Instacart in May 2017](https://tech.i
 `Ensure that the Glue Crawler is in the same region as your S3 bucket and Redshift cluster`
 
 ### High-Level Instructions
-Create a new Glue crawler that will catalog S3 bucket **s3://datalab-analytics-\[account_id\]** that contains your parquet format files. If you don't have these files, you can use the files within **s3://pfizer-immersion-day/parquet/**.
+Create a new Glue crawler that will catalog S3 bucket **s3://datalab-analytics-\[account_id\]** that contains your parquet format files.
 
 Verify that the newly created Glue Data Catalog has detected the correct classification and schema for the files.
 
@@ -93,19 +93,19 @@ Verify that the newly created Glue Data Catalog has detected the correct classif
 ## Crawling the data set
 1. Open the AWS Glue console
 
-1. Select **Crawler** and click **Add Crawler**
+2. Select **Crawler** and click **Add Crawler**
 
-1. Give your crawler a name and choose the Glue IAM role we created in Step 1 **AWSGlueServiceRole**
+3. Give your crawler a name and choose the Glue IAM role we created in Step 1 **AWSGlueServiceRole**
 
-1. Select **S3** as the **Data Source** and specify a path in **my account**. Use the **location containing your parquet files from Module 1**, or use **s3://pfizer-immersion-day/parquet/** as the S3 path.
+4. Select **S3** as the **Data Source** and specify a path in **my account**. Use the **location containing your parquet files from Module 1** as the S3 path.
 
-1. Do not add any additional data sources and select **Run On Demand** for frequency.
+5. Do not add any additional data sources and select **Run On Demand** for frequency.
 
-1. Create a new database called **spectrum** and hit next after leaving the **table prefix** blank.
+6. Create a new database called **spectrum** and hit next after leaving the **table prefix** blank.
 
-1. Click **Finish** to complete creating the crawler
+7. Click **Finish** to complete creating the crawler
 
-1. Run the new crawler
+8. Run the new crawler
 
 </p></details>
 
@@ -166,10 +166,6 @@ If your Redshift cluster is compatible with the new Query Editor feature, you ca
 1. Before we can query data in S3 using Spectrum we need to create an external schema configured to interface with the Glue Data Catalog. Open up SQL Workbench/J or a similar tool and run the following commands in sequence:
 
     ``` sql
-    SET autocommit ON
-    ```
-
-    ``` sql
     CREATE EXTERNAL SCHEMA spectrum
     FROM data catalog 
     DATABASE 'spectrum' 
@@ -190,7 +186,7 @@ If your Redshift cluster is compatible with the new Query Editor feature, you ca
 
     Now we have an external Redshift schema defined pointing to our database in Glue Data Catalog we can start running some queries.
 
-1. Still from within SQL Workbench/J, lets verify that our fact tables (products and departments) were created in Redshift
+2. Still from within SQL Workbench/J, lets verify that our fact tables (products and departments) were created in Redshift
     
     ``` sql
     -- List the first 20 product names in the products table
