@@ -251,9 +251,11 @@ Create an S3 folder per table in the analytics S3 bucket, and create a Glue ETL 
 
 4. For the Job name, specify `csv2parq` and choose `AWSGlueServiceRole-DataLab`. Select **A new script to be authored by you**, then select **Python** as the **ETL Language**. Leave everything else as default, then select **Next**.
 
-5. Select **Next** on the **Connections** page then select **Save job and edit script**. Copy and paste the following, while changing the s3bucket variable.
- 
- ```Python
+5. Select **Next** on the **Connections** page then select **Save job and edit script**.
+
+`Change the value for s3bucket variable to the name of your bucket such as datalab-raw-12345676`
+
+```Python
 import sys
 from awsglue.transforms import *
 from awsglue.utils import getResolvedOptions
@@ -271,7 +273,7 @@ job = Job(glueContext)
 
 job.init(args['JOB_NAME'], args)
 
-s3bucket = "datalab-analytics-12334561234"
+s3bucket = "CHANGE ME"
 
 datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "instacart-csv", table_name = "aisles", transformation_ctx = "datasource0")
 applymapping1 = ApplyMapping.apply(frame = datasource0, mappings = [("aisle_id", "long", "aisle_id", "long"), ("aisle", "string", "aisle", "string")], transformation_ctx = "applymapping1")
@@ -300,12 +302,12 @@ datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, 
 job.commit()
 ```
 
-6. Click **Save** then click the **X** on the far top right corner to close the window.
+1. Click **Save** then click the **X** on the far top right corner to close the window.
 
-7. Select the ETL job created and selection **Action** -> **Run Job**. 
+2. Select the ETL job created and selection **Action** -> **Run Job**. 
 
-8. Select the ETL job and view the job history
+3. Select the ETL job and view the job history
 
-9. Once the job completes, go to the **S3** service, select the analysis bucket, and analyze the contents of each folder. You should see files that have been created.
+4. Once the job completes, go to the **S3** service, select the analysis bucket, and analyze the contents of each folder. You should see files that have been created.
 
 </details>
