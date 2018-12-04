@@ -211,7 +211,7 @@ Whitelist your IP address to provide network access in your Redshift cluster's s
 
    + **Protocol**: **TCP**\.
 
-   + **Port Range**: type the same port number that you used when you launched the cluster\. The default port for Amazon Redshift is `5439`, but your port might be different\.
+   + **Port Range**: type the same port number that you used when you launched the cluster\. The default port for Amazon Redshift is `5439`, but your port might be different.
 
    + **Source**: select **My IP**
 </p></details>
@@ -296,7 +296,7 @@ Download a sample of the delimited data (6 x CSV files) from **s3://datalab-raw-
 
 
 **Note**  
-Before you proceed, ensure that your SQL Workbench/J client is connected to the cluster\.
+Before you proceed, ensure that your SQL client is connected to the cluster\.
 
 1. Create a new database called **instacart_redshift**
 
@@ -313,12 +313,16 @@ Before you proceed, ensure that your SQL Workbench/J client is connected to the 
     aisle_id integer not null distkey sortkey,
     aisle varchar(30)
     );
+    ```
 
+    ``` sql
     create table departments(
         department_id integer not null distkey sortkey,
         department varchar(30)
     );
-
+    ```
+    
+    ``` sql
     create table orders(
         order_id integer not null distkey sortkey,
         user_id integer not null,
@@ -328,21 +332,27 @@ Before you proceed, ensure that your SQL Workbench/J client is connected to the 
         order_hour_of_day smallint not null,
         days_since_prior_order float
     );
+    ```
 
+    ``` sql
     create table products(
         product_id integer not null distkey sortkey,
         product_name varchar(255),
         aisle_id integer not null,
         department_id integer not null
     );
+    ```
 
+    ``` sql
     create table order_products_prior(
         order_id integer not null distkey sortkey,
         product_id integer not null,
         add_to_cart_order integer,
         reordered smallint
     );
+    ```
 
+    ``` sql
     create table order_products_train(
         order_id integer not null distkey sortkey,
         product_id integer not null,
