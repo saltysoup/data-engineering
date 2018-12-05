@@ -72,7 +72,7 @@ Verify that the newly created Glue Data Catalog has detected the correct classif
 
 3. Give your crawler a name and choose the Glue IAM role from Module 1 called **AWSGlueServiceRole-DataLab**
 
-4. Select **S3** as the **Data Source** and specify a path in **my account**. Use the **location containing your parquet files from Module 1** as the S3 path. This will be the `datalab-raw-`
+4. Select **S3** as the **Data Source** and specify a path in **my account**. Use the **location containing your parquet files from Module 1** as the S3 path. This will be the `datalab-analytics-*`
 
 5. Do not add any additional data sources and select **Run On Demand** for frequency.
 
