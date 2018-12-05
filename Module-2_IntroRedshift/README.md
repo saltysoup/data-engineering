@@ -377,7 +377,7 @@ Before you proceed, ensure that your SQL client is connected to the cluster\.
     ``` sql
     COPY aisles
     FROM 's3://datalab-raw-[account_id]/aisles' 
-    CREDENTIALS 'aws_iam_role=<iam-role-arn>'
+    CREDENTIALS 'aws_iam_role=arn:aws:iam::114854394123:role/myRedshiftRole'
     DELIMITER ',' REGION 'ap-southeast-2'
     FORMAT AS CSV
     IGNOREHEADER 1;
